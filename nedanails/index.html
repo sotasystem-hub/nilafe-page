@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>فرم رزرو نوبت ندا</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      direction: rtl;
+      max-width: 500px;
+      margin: 30px auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 15px;
+      background: #f9f9f9;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+      margin-bottom: 5px;
+    }
+    select, input {
+      width: 100%;
+      padding: 8px;
+      border-radius: 8px;
+      border: 1px solid #aaa;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .contact {
+      margin-top: 30px;
+      font-size: 14px;
+      text-align: center;
+    }
+    .contact a {
+      color: #2b7bb9;
+      text-decoration: none;
+      display: block;
+      margin-top: 5px;
+    }
+    #serverResponse {
+      margin-top: 10px;
+      font-family: monospace;
+      white-space: pre-wrap;
+      color: #333;
+      min-height: 40px;
+      padding: 10px;
+      background-color: #f0f0f0;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>فرم رزرو نوبت ناخن</h2>
+
+  <form id="bookingForm">
+    <label for="name">نام کامل:</label>
+    <input type="text" id="name" name="name" required>
+
+    <label for="phone">شماره تماس:</label>
+    <input type="tel" id="phone" name="phone" pattern="[0-9]{10,}" required>
+
+    <label for="date">انتخاب تاریخ:</label>
+    <select id="date" name="date"></select>
+
+    <label for="time">انتخاب ساعت:</label>
+    <select id="time" name="time">
+      <option value="08:00 - 09:30">۸:۰۰ تا ۹:۳۰</option>
+      <option value="09:30 - 11:00">۹:۳۰ تا ۱۱:۰۰</option>
+      <option value="11:00 - 12:30">۱۱:۰۰ تا ۱۲:۳۰</option>
+      <option value="13:00 - 14:30">۱۳:۰۰ تا ۱۴:۳۰</option>
+      <option value="14:30 - 16:00">۱۴:۳۰ تا ۱۶:۰۰</option>
+      <option value="16:00 - 17:30">۱۶:۰۰ تا ۱۷:۳۰</option>
+    </select>
+
+    <label for="service">انتخاب خدمات:</label>
+    <select id="service" name="service">
+      <option value="کاشت ناخن">کاشت ناخن</option>
+      <option value="ترمیم ناخن">ترمیم ناخن</option>
+      <option value="ژلیش ناخن">ژلیش ناخن</option>
+      <option value="ریموو">ریموو</option>
+      <option value="مانیکور و پدیکور">مانیکور و پدیکور</option>
+      <option value="دیزاین ناخن">دیزاین ناخن</option>
+    </select>
+
+    <button type="submit" id="submitBtn">ثبت نوبت</button>
+  </form>
+
+  <div id="serverResponse"></div>
+
+  <div class="contact">
+    <p>راه‌های ارتباطی با ندا:</p>
+    <a href="https://t.me/neda_nail">تلگرام: @neda_nail10</a>
+    <a href="https://wa.me/989123456789">واتساپ: 09123456789</a>
+  </div>
+
+  <script>
+  const dateSelect = document.getElementById("date");
+  const now = new Date();
+  function toPersianDate(gDate) {
+    return new Intl.DateTimeFormat('fa-IR-u-ca-persian', {
+      year: 'numeric', month: 'long', day: 'numeric', weekday: 'long'
+    }).format(gDate);
+  }
+  for (let i = 0; i < 10; i++) {
+    const d = new Date();
+    d.setDate(now.getDate() + i);
+    const opt = document.createElement("option");
+    const persianDate = toPersianDate(d);
+    opt.textContent = persianDate;
+    opt.value = persianDate;
+    dateSelect.appendChild(opt);
+  }
+
+  const form    = document.getElementById('bookingForm');
+  const btn     = document.getElementById('submitBtn');
+  const respDiv = document.getElementById('serverResponse');
+  const url     = 'https://script.google.com/macros/s/AKfycbwdZpTXsJmnBtD4Tsn5hVNUx3AkordaABBBU8V8iiIiYwCa4sO-cHbgsfNmW13liH-7vg/exec';
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    btn.disabled     = true;
+    btn.textContent  = 'در حال ارسال...';
+    respDiv.innerText = '';
+    respDiv.style.backgroundColor = '#f0f0f0';
+    respDiv.style.color = '#333';
+
+    fetch(url, {
+      method: 'POST',
+      body: new FormData(form)
+    })
+    .then(r => {
+      if (!r.ok) throw new Error('خطای ارتباط با سرور');
+      return r.text(); // متن خالص پیام از سرور
+    })
+    .then(message => {
+      respDiv.innerText = message;
+
+      if (message.includes('موفق')) {
+        respDiv.style.color = 'green';
+        form.reset();
+        setTimeout(() => {
+          window.location.href = 'https://instagram.com/neda_nail';
+        }, 1500);
+      } else {
+        respDiv.style.color = 'red';
+      }
+    })
+    .catch(err => {
+      respDiv.innerText = 'خطا در ارسال. لطفاً اتصال یا تنظیمات را بررسی کنید.';
+      respDiv.style.color = 'red';
+    })
+    .finally(() => {
+      btn.disabled    = false;
+      btn.textContent = 'ثبت نوبت';
+    });
+  });
+</script>
