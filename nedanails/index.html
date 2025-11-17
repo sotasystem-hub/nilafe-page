@@ -2,62 +2,88 @@
 <html lang="fa" dir="rtl">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <title>فرم رزرو نوبت ندا</title>
+
   <style>
     body {
       font-family: sans-serif;
       direction: rtl;
       max-width: 500px;
-      margin: 30px auto;
+      margin: 0 auto;
       padding: 20px;
-      border: 1px solid #ccc;
-      border-radius: 15px;
-      background: #f9f9f9;
+      background: #f5f5f5;
+      font-size: 17px;
+      line-height: 1.6;
     }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 22px;
+    }
+
     label {
       display: block;
       margin-top: 15px;
-      margin-bottom: 5px;
+      margin-bottom: 6px;
+      font-size: 16px;
     }
+
     select, input {
       width: 100%;
-      padding: 8px;
-      border-radius: 8px;
+      padding: 12px;
+      border-radius: 10px;
       border: 1px solid #aaa;
+      font-size: 16px;
+      background: white;
     }
+
     button {
-      margin-top: 20px;
-      padding: 10px 20px;
+      margin-top: 25px;
+      padding: 14px;
       background: #4CAF50;
       color: white;
       border: none;
-      border-radius: 8px;
-      font-size: 16px;
+      border-radius: 10px;
+      font-size: 18px;
       cursor: pointer;
+      width: 100%;
     }
-    .contact {
-      margin-top: 30px;
-      font-size: 14px;
-      text-align: center;
+
+    button:active {
+      opacity: 0.8;
     }
-    .contact a {
-      color: #2b7bb9;
-      text-decoration: none;
-      display: block;
-      margin-top: 5px;
-    }
+
     #serverResponse {
-      margin-top: 10px;
-      font-family: monospace;
+      margin-top: 15px;
+      font-family: inherit;
+      font-size: 15px;
       white-space: pre-wrap;
       color: #333;
       min-height: 40px;
       padding: 10px;
-      background-color: #f0f0f0;
-      border-radius: 5px;
+      background-color: #eaeaea;
+      border-radius: 8px;
+    }
+
+    .contact {
+      margin-top: 35px;
+      font-size: 15px;
+      text-align: center;
+    }
+
+    .contact a {
+      color: #0077cc;
+      text-decoration: none;
+      display: block;
+      margin-top: 6px;
+      font-size: 16px;
     }
   </style>
 </head>
+
 <body>
 
   <h2>فرم رزرو نوبت ناخن</h2>
@@ -104,64 +130,70 @@
   </div>
 
   <script>
-  const dateSelect = document.getElementById("date");
-  const now = new Date();
-  function toPersianDate(gDate) {
-    return new Intl.DateTimeFormat('fa-IR-u-ca-persian', {
-      year: 'numeric', month: 'long', day: 'numeric', weekday: 'long'
-    }).format(gDate);
-  }
-  for (let i = 0; i < 10; i++) {
-    const d = new Date();
-    d.setDate(now.getDate() + i);
-    const opt = document.createElement("option");
-    const persianDate = toPersianDate(d);
-    opt.textContent = persianDate;
-    opt.value = persianDate;
-    dateSelect.appendChild(opt);
-  }
+    const dateSelect = document.getElementById("date");
+    const now = new Date();
 
-  const form    = document.getElementById('bookingForm');
-  const btn     = document.getElementById('submitBtn');
-  const respDiv = document.getElementById('serverResponse');
-  const url     = 'https://script.google.com/macros/s/AKfycbwdZpTXsJmnBtD4Tsn5hVNUx3AkordaABBBU8V8iiIiYwCa4sO-cHbgsfNmW13liH-7vg/exec';
+    function toPersianDate(gDate) {
+      return new Intl.DateTimeFormat('fa-IR-u-ca-persian', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        weekday: 'long'
+      }).format(gDate);
+    }
 
-  form.addEventListener('submit', e => {
-    e.preventDefault();
-    btn.disabled     = true;
-    btn.textContent  = 'در حال ارسال...';
-    respDiv.innerText = '';
-    respDiv.style.backgroundColor = '#f0f0f0';
-    respDiv.style.color = '#333';
+    for (let i = 0; i < 10; i++) {
+      const d = new Date();
+      d.setDate(now.getDate() + i);
+      const opt = document.createElement("option");
+      const persianDate = toPersianDate(d);
+      opt.textContent = persianDate;
+      opt.value = persianDate;
+      dateSelect.appendChild(opt);
+    }
 
-    fetch(url, {
-      method: 'POST',
-      body: new FormData(form)
-    })
-    .then(r => {
-      if (!r.ok) throw new Error('خطای ارتباط با سرور');
-      return r.text(); // متن خالص پیام از سرور
-    })
-    .then(message => {
-      respDiv.innerText = message;
+    const form = document.getElementById('bookingForm');
+    const btn = document.getElementById('submitBtn');
+    const respDiv = document.getElementById('serverResponse');
+    const url = 'https://script.google.com/macros/s/AKfycbwdZpTXsJmnBtD4Tsn5hVNUx3AkordaABBBU8V8iiIiYwCa4sO-cHbgsfNmW13liH-7vg/exec';
 
-      if (message.includes('موفق')) {
-        respDiv.style.color = 'green';
-        form.reset();
-        setTimeout(() => {
-          window.location.href = 'https://instagram.com/neda_nail.beauti';
-        }, 1500);
-      } else {
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+
+      btn.disabled = true;
+      btn.textContent = 'در حال ارسال...';
+      respDiv.innerText = '';
+      respDiv.style.backgroundColor = '#eaeaea';
+      respDiv.style.color = '#333';
+
+      fetch(url, {
+        method: 'POST',
+        body: new FormData(form)
+      })
+      .then(r => r.text())
+      .then(message => {
+        respDiv.innerText = message;
+
+        if (message.includes('موفق')) {
+          respDiv.style.color = 'green';
+          form.reset();
+          setTimeout(() => {
+            window.location.href = 'https://instagram.com/neda_nail.beauti';
+          }, 1500);
+        } else {
+          respDiv.style.color = 'red';
+        }
+      })
+      .catch(() => {
+        respDiv.innerText = 'خطا در ارسال. لطفاً اتصال یا تنظیمات را بررسی کنید.';
         respDiv.style.color = 'red';
-      }
-    })
-    .catch(err => {
-      respDiv.innerText = 'خطا در ارسال. لطفاً اتصال یا تنظیمات را بررسی کنید.';
-      respDiv.style.color = 'red';
-    })
-    .finally(() => {
-      btn.disabled    = false;
-      btn.textContent = 'ثبت نوبت';
+      })
+      .finally(() => {
+        btn.disabled = false;
+        btn.textContent = 'ثبت نوبت';
+      });
     });
-  });
-</script>
+  </script>
+
+</body>
+</html>
