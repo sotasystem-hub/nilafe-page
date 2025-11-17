@@ -1,375 +1,164 @@
-<!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<!DOCTYPE html><html lang="fa" dir="rtl">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>نیلافـه — رزرو نوبت ناخن</title>
-
-  <!-- Meta برای سئو کوتاه -->
-  <meta name="description" content="رزرو آنلاین نوبت ناخن ندا — کاشت، ژلیش، ترمیم و دیزاین. سریع، دقیق و باکیفیت." />
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Neda Nails Studio</title>
   <style>
-    :root{
-      --bg:#0f1724;
-      --muted:#9aa5b1;
-      --card:#ffffff;
-      --accent1: linear-gradient(135deg,#ff80bf 0%, #ffb86b 100%);
-      --accent2: #ff7ab6;
-      --glass: rgba(255,255,255,0.06);
-      --radius: 14px;
-      --maxWidth:1100px;
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Arial,"Noto Sans",sans-serif;
-      background: linear-gradient(180deg,#fff 0%, #fff 40%, #f7f6fb 100%);
-      color: #0f1724;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      line-height:1.5;
-    }
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "IRANSans", sans-serif;
+      background: #fafafa;
+      color: #333;
+      line-height: 1.7;
+    }header {
+  background: #ffffff;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  text-align: center;
+}
 
-    /* container */
-    .wrap{
-      max-width:var(--maxWidth);
-      margin:28px auto;
-      padding:18px;
-    }
+header h1 {
+  margin: 0;
+  font-size: 26px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
 
-    /* header */
-    header{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:16px;
-      margin-bottom:18px;
-    }
-    .brand{
-      display:flex;
-      gap:12px;
-      align-items:center;
-    }
-    .logo {
-      width:56px;height:56px;border-radius:12px;
-      background:var(--accent1);
-      display:flex;align-items:center;justify-content:center;
-      color:white;font-weight:700;font-size:18px;box-shadow: 0 6px 18px rgba(255,122,182,0.15);
-    }
-    .brand h1{margin:0;font-size:18px}
-    .brand p{margin:0;font-size:13px;color:var(--muted)}
+.hero {
+  width: 100%;
+  height: 380px;
+  background: url("https://images.pexels.com/photos/3997370/pexels-photo-3997370.jpeg") center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  text-shadow: 0 0 15px rgba(0,0,0,0.7);
+}
 
-    .cta-row{display:flex;gap:8px;align-items:center}
-    .cta-row a{
-      text-decoration:none;padding:8px 12px;border-radius:10px;
-      background:transparent;color:var(--muted);font-size:14px;border:1px solid rgba(15,23,36,0.05)
-    }
+.hero h2 {
+  font-size: 34px;
+  font-weight: bold;
+}
 
-    /* hero layout */
-    .hero{
-      display:grid;
-      grid-template-columns: 1fr 420px;
-      gap:22px;
-      align-items:stretch;
-      margin-bottom:28px;
-    }
+.services {
+  padding: 40px 20px;
+  max-width: 1100px;
+  margin: auto;
+}
 
-    /* left hero (visual + text) */
-    .hero-left{
-      background:
-        radial-gradient(800px 200px at 10% 20%, rgba(255,122,182,0.08), transparent 6%),
-        radial-gradient(600px 180px at 90% 80%, rgba(120,81,255,0.06), transparent 6%),
-        linear-gradient(180deg,#fff,#fbf7ff);
-      border-radius:var(--radius);
-      padding:26px;
-      display:flex;
-      flex-direction:column;
-      gap:18px;
-      box-shadow: 0 10px 30px rgba(15,23,36,0.03);
-    }
+.services h3 {
+  text-align: center;
+  font-size: 28px;
+  margin-bottom: 30px;
+  font-weight: bold;
+}
 
-    .hero-visual{
-      width:100%;
-      height:220px;
-      border-radius:12px;
-      overflow:hidden;
-      display:block;
-      background:linear-gradient(180deg, rgba(0,0,0,0.02), rgba(0,0,0,0.02));
-    }
-    .hero-visual img{width:100%;height:100%;object-fit:cover;display:block}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 25px;
+}
 
-    .hero-title{font-size:24px;margin:0}
-    .hero-sub{color:var(--muted);margin:0;font-size:15px}
-    .features{display:flex;gap:12px;flex-wrap:wrap;margin-top:6px}
-    .chip{background:white;padding:8px 10px;border-radius:10px;font-size:14px;color:#333;border:1px solid rgba(15,23,36,0.04)}
+.card {
+  background: #fff;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  transition: 0.3s;
+}
 
-    /* right hero (form card) */
-    .card{
-      background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,255,255,0.96));
-      border-radius:16px;padding:16px;
-      box-shadow: 0 12px 30px rgba(18,24,40,0.06);
-      border: 1px solid rgba(15,23,36,0.04);
-    }
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 25px rgba(0,0,0,0.12);
+}
 
-    .card h3{margin:0 0 8px 0;font-size:18px}
-    form{display:flex;flex-direction:column;gap:12px}
-    label{font-size:14px;color:#233;}
-    input[type="text"], input[type="tel"], select{
-      width:100%;
-      padding:12px 14px;
-      border-radius:10px;border:1px solid #e6e6ee;
-      font-size:15px;background:white;
-      outline:none;transition:box-shadow .18s, border-color .18s;
-    }
-    input:focus, select:focus{
-      box-shadow:0 6px 20px rgba(99,102,241,0.08);
-      border-color: #6b46ff;
-    }
-    .row{display:flex;gap:10px}
-    .row .col{flex:1}
+.card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
 
-    button#submitBtn{
-      margin-top:6px;padding:12px;border-radius:12px;
-      border:none;color:white;font-weight:600;font-size:16px;
-      cursor:pointer;background:linear-gradient(90deg,#ff80bf,#ffb86b);
-      box-shadow: 0 8px 22px rgba(255,122,182,0.16);
-    }
+.card-body {
+  padding: 18px;
+}
 
-    #serverResponse{
-      margin-top:8px;padding:10px;border-radius:8px;background:#fff8f9;border:1px solid rgba(255,122,182,0.08);
-      font-size:14px;color:#333;min-height:44px;
-    }
+.card-body h4 {
+  margin: 0 0 10px;
+  font-size: 20px;
+  font-weight: bold;
+}
 
-    /* services gallery */
-    .services{
-      margin-top:22px;display:flex;gap:12px;flex-wrap:wrap;
-    }
-    .service{
-      flex:1 1 180px;background:white;padding:12px;border-radius:12px;border:1px solid rgba(15,23,36,0.04);
-      display:flex;gap:12px;align-items:center;
-    }
-    .service img{width:64px;height:64px;border-radius:8px;object-fit:cover}
+footer {
+  text-align: center;
+  padding: 25px;
+  background: #fff;
+  font-size: 14px;
+  margin-top: 40px;
+  border-top: 1px solid #eee;
+}
 
-    /* gallery */
-    .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:18px}
-    .gallery img{width:100%;height:90px;object-fit:cover;border-radius:8px}
-
-    /* footer */
-    footer{margin-top:20px;text-align:center;color:var(--muted);font-size:13px;padding:12px}
-
-    /* responsive */
-    @media (max-width: 960px) {
-      .hero{grid-template-columns:1fr; }
-      .hero-left{order:2}
-      .card{order:1}
-      .hero-visual{height:180px}
-      .gallery img{height:70px}
-    }
-
-    @media (max-width:480px){
-      .wrap{padding:12px}
-      .logo{width:48px;height:48px}
-      .brand h1{font-size:16px}
-      .hero-visual{height:160px}
-      .gallery{grid-template-columns:repeat(2,1fr)}
-    }
   </style>
 </head>
-
-<body>
-
-  <div class="wrap">
-    <!-- header -->
-    <header>
-      <div class="brand">
-        <div class="logo">N</div>
-        <div>
-          <h1>Neda Nails</h1>
-          <p>نیلافه — زیبایی ناخن با دقت و هنر</p>
-        </div>
-      </div>
-
-      <div class="cta-row">
-        <a href="https://instagram.com/neda_nail.beauti" target="_blank" rel="noopener">اینستاگرام</a>
-        <a href="https://t.me/neda_nail" target="_blank" rel="noopener">تلگرام</a>
-      </div>
-    </header>
-
-    <!-- hero -->
-    <section class="hero">
-      <!-- visual + content -->
-      <div class="hero-left">
-        <div class="hero-visual" aria-hidden="true">
-          <!-- تصویر پیش‌فرض از Unsplash؛ در صورت دلخواه آن را با عکس‌های خودتان جایگزین کنید -->
-          <img src="https://images.unsplash.com/photo-1556228720-0b51b092ab8d?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=3d5df2d7f4c7b5f7b3a8a9f0f2e2d7f9" alt="ناخن‌های طراحی شده - Neda Nails">
-        </div>
-
-        <div>
-          <h2 class="hero-title">زیباییِ دقیق. طراحیِ ماندگار.</h2>
-          <p class="hero-sub">کاشت، ژلیش، ترمیم و دیزاین حرفه‌ای. تجربه‌ای راحت، تمیز و VIP برای شما.</p>
-
-          <div class="features" aria-hidden="true">
-            <div class="chip">استفاده از متریال حرفه‌ای</div>
-            <div class="chip">محیط کاملاً استریل</div>
-            <div class="chip">رزرو آنلاین سریع</div>
-          </div>
-
-          <div class="services" aria-hidden="true">
-            <div class="service">
-              <img src="https://images.unsplash.com/photo-1503602642458-232111445657?q=80&w=600&auto=format&fit=crop&ixlib=rb-4.0.3&s=3a2e7f3d0a3c6e0b8ad3c1c9f1b6c9a8" alt="">
-              <div>
-                <strong>کاشت ناخن</strong>
-                <div style="color:var(--muted);font-size:13px">طبیعی و مقاوم</div>
-              </div>
-            </div>
-
-            <div class="service">
-              <img src="https://images.unsplash.com/photo-1556228453-2f8b1f6b0d2a?q=80&w=600&auto=format&fit=crop&ixlib=rb-4.0.3&s=e9d4a540f3c2b3f6ae4bf4d7d3a8c2b1" alt="">
-              <div>
-                <strong>ژلیش</strong>
-                <div style="color:var(--muted);font-size:13px">رنگ‌های ترند</div>
-              </div>
-            </div>
-
-            <div class="service">
-              <img src="https://images.unsplash.com/photo-1545239351-1141bd82e8a6?q=80&w=600&auto=format&fit=crop&ixlib=rb-4.0.3&s=6f3b5d4c2f7d1e8c9a2b3c4d5e6f7a8b" alt="">
-              <div>
-                <strong>دیزاین</strong>
-                <div style="color:var(--muted);font-size:13px">جزئیات هنری</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="gallery" aria-hidden="true">
-            <img src="https://images.unsplash.com/photo-1556228452-2b0b4d9a1c4a?q=80&w=600&auto=format&fit=crop&ixlib=rb-4.0.3&s=c12d4e3f5a6b7c8d9e0f1a2b3c4d5e6f" alt="">
-            <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=600&auto=format&fit=crop&ixlib=rb-4.0.3&s=b7c1c9f4a5d6e7f8091a2b3c4d5e6f7a" alt="">
-            <img src="https://images.unsplash.com/photo-1519744792095-2f2205e87b6f?q=80&w=600&auto=format&fit=crop&ixlib=rb-4.0.3&s=1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d" alt="">
-          </div>
-        </div>
-      </div>
-
-      <!-- reservation card -->
-      <aside class="card" role="region" aria-label="فرم رزرو">
-        <h3>رزرو آنلاین نوبت</h3>
-
-        <!-- === FORM: حفظ id/name ها و منطق JS دقیقا مطابق با نسخه قبلی === -->
-        <form id="bookingForm">
-          <label for="name">نام کامل:</label>
-          <input type="text" id="name" name="name" required placeholder="مثلاً: ندا حسینی">
-
-          <label for="phone">شماره تماس:</label>
-          <input type="tel" id="phone" name="phone" pattern="[0-9]{10,}" required placeholder="مثلاً: 09123456789">
-
-          <label for="date">انتخاب تاریخ:</label>
-          <select id="date" name="date" aria-label="تاریخ"></select>
-
-          <div class="row">
-            <div class="col">
-              <label for="time">انتخاب ساعت:</label>
-              <select id="time" name="time">
-                <option value="08:00 - 09:30">۸:۰۰ تا ۹:۳۰</option>
-                <option value="09:30 - 11:00">۹:۳۰ تا ۱۱:۰۰</option>
-                <option value="11:00 - 12:30">۱۱:۰۰ تا ۱۲:۳۰</option>
-                <option value="13:00 - 14:30">۱۳:۰۰ تا ۱۴:۳۰</option>
-                <option value="14:30 - 16:00">۱۴:۳۰ تا ۱۶:۰۰</option>
-                <option value="16:00 - 17:30">۱۶:۰۰ تا ۱۷:۳۰</option>
-              </select>
-            </div>
-
-            <div class="col">
-              <label for="service">خدمت:</label>
-              <select id="service" name="service">
-                <option value="کاشت ناخن">کاشت ناخن</option>
-                <option value="ترمیم ناخن">ترمیم ناخن</option>
-                <option value="ژلیش ناخن">ژلیش ناخن</option>
-                <option value="ریموو">ریموو</option>
-                <option value="مانیکور و پدیکور">مانیکور و پدیکور</option>
-                <option value="دیزاین ناخن">دیزاین ناخن</option>
-              </select>
-            </div>
-          </div>
-
-          <button type="submit" id="submitBtn">ثبت نوبت</button>
-
-          <div id="serverResponse" role="status" aria-live="polite"></div>
-        </form>
-
-        <div style="margin-top:12px;font-size:13px;color:var(--muted)">
-          <div>پشتیبانی: <a href="https://wa.me/989371712429" target="_blank" rel="noopener">09371712429</a></div>
-          <div style="margin-top:6px">تلگرام: <a href="https://t.me/neda_nail" target="_blank" rel="noopener">@neda_nail</a></div>
-        </div>
-      </aside>
-    </section>
-
-    <footer>
-      © حقوق مادی و معنوی محفوظ است — Nilafe. طراحی و اجرا: Neda Nails
-    </footer>
+<body><header>
+  <h1>Neda Nails Studio</h1>
+</header><section class="hero">
+  <h2>زیبایی دستان شما هنر ماست</h2>
+</section><section class="services">
+  <h3>خدمات ندا نیلز</h3>
+  <div class="grid"><div class="card">
+  <img src="https://images.pexels.com/photos/3997372/pexels-photo-3997372.jpeg" />
+  <div class="card-body">
+    <h4>ژلیش حرفه‌ای</h4>
+    <p>اجرای ژلیش با ماندگاری بالا و مواد اصل.</p>
   </div>
+</div>
 
-  <!-- ====== JS: منطق فرم (همان URL و id/name های قبلی را حفظ کردم) ====== -->
-  <script>
-    // تاریخ‌های فارسی
-    const dateSelect = document.getElementById("date");
-    const now = new Date();
-    function toPersianDate(gDate) {
-      return new Intl.DateTimeFormat('fa-IR-u-ca-persian', {
-        year: 'numeric', month: 'long', day: 'numeric', weekday: 'long'
-      }).format(gDate);
-    }
-    for (let i = 0; i < 10; i++) {
-      const d = new Date();
-      d.setDate(now.getDate() + i);
-      const opt = document.createElement("option");
-      const persianDate = toPersianDate(d);
-      opt.textContent = persianDate;
-      opt.value = persianDate;
-      dateSelect.appendChild(opt);
-    }
+<div class="card">
+  <img src="https://images.pexels.com/photos/3997380/pexels-photo-3997380.jpeg" />
+  <div class="card-body">
+    <h4>دیپینگ پودر</h4>
+    <p>استایل خاص و مقاوم با جدیدترین روش Dip Powder.</p>
+  </div>
+</div>
 
-    // ارسال فرم — آدرس Apps Script همان آدرسی است که تو قبلاً استفاده می‌کردی
-    const form = document.getElementById('bookingForm');
-    const btn = document.getElementById('submitBtn');
-    const respDiv = document.getElementById('serverResponse');
+<div class="card">
+  <img src="https://images.pexels.com/photos/3997376/pexels-photo-3997376.jpeg" />
+  <div class="card-body">
+    <h4>کاشت ناخن</h4>
+    <p>کاشت بادوام و طبیعی با فرم دلخواه.</p>
+  </div>
+</div>
 
-    // IMPORTANT: اگر می‌خواهی آدرس Web App گوگل را تغییر دهی، فقط مقدار url را عوض کن.
-    const url = 'https://script.google.com/macros/s/AKfycbwdZpTXsJmnBtD4Tsn5hVNUx3AkordaABBBU8V8iiIiYwCa4sO-cHbgsfNmW13liH-7vg/exec';
+<div class="card">
+  <img src="https://images.pexels.com/photos/5699720/pexels-photo-5699720.jpeg" />
+  <div class="card-body">
+    <h4>ترمیم ناخن</h4>
+    <p>ترمیم تخصصی بدون هواگرفتگی و شکستگی.</p>
+  </div>
+</div>
 
-    form.addEventListener('submit', e => {
-      e.preventDefault();
-      btn.disabled = true;
-      btn.textContent = 'در حال ارسال...';
-      respDiv.innerText = '';
+<div class="card">
+  <img src="https://images.pexels.com/photos/3997383/pexels-photo-3997383.jpeg" />
+  <div class="card-body">
+    <h4>مانیکور و پدیکور</h4>
+    <p>مرطوب‌سازی، فرم دهی و پاکسازی پوست دست و پا.</p>
+  </div>
+</div>
 
-      fetch(url, {
-        method: 'POST',
-        body: new FormData(form)
-      })
-      .then(r => {
-        if (!r.ok) throw new Error('خطای ارتباط با سرور');
-        return r.text();
-      })
-      .then(message => {
-        respDiv.innerText = message;
-        if (message.includes('موفق')) {
-          respDiv.style.color = 'green';
-          form.reset();
-          setTimeout(() => {
-            window.location.href = 'https://instagram.com/neda_nail.beauti';
-          }, 1400);
-        } else {
-          respDiv.style.color = 'red';
-        }
-      })
-      .catch(err => {
-        respDiv.innerText = 'خطا در ارسال. لطفاً اتصال یا تنظیمات را بررسی کنید.';
-        respDiv.style.color = 'red';
-      })
-      .finally(() => {
-        btn.disabled = false;
-        btn.textContent = 'ثبت نوبت';
-      });
-    });
-  </script>
-</body>
+<div class="card">
+  <img src="https://images.pexels.com/photos/3997349/pexels-photo-3997349.jpeg" />
+  <div class="card-body">
+    <h4>لیمینیشن ناخن</h4>
+    <p>درخشش و استحکام طبیعی ناخن بدون مواد سنگین.</p>
+  </div>
+</div>
+
+  </div>
+</section><footer>
+  © تمامی حقوق متعلق به Neda Nails می‌باشد.
+</footer></body>
 </html>
